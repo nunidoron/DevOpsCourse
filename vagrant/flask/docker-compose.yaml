@@ -24,5 +24,9 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+
+    networks:
+      my_network:
+        ipv4_address: 172.19.0.2
 volumes:
     db_data: {}
