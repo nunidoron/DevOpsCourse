@@ -1,0 +1,13 @@
+kubectl run nginx --image=nginx
+kubectl set image deployment/nginx nginx=nginx:1.9.1
+
+kubectl create deployment hello-node --image=nginx:1.15.12-alpine
+kubectl get deployments
+kubectl describe deployment hello-node
+kubectl get pods
+kubectl set image deployment/hello-node nginx=nginx:1.16
+kubectl set image deployment/hello-node 
+kubectl get all
+kubectl expose deployment hello-node --type=ClusterIP --port=8080
+kubectl scale deployment/hello-node --replicas=3
+kubectl get services
