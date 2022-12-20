@@ -1,0 +1,6 @@
+--- 
+- name: install nginx and vim
+  apt: name=nginx,vim state=present
+
+- name: Copy aviel.txt 
+  copy: src=aviel.txt dest=/var/tmp

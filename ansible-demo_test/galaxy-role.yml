@@ -1,0 +1,4 @@
+- hosts: servers
+  roles:
+    - role: robertdebock.npm
+      become: yes
