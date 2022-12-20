@@ -1,3 +1,5 @@
+
+.terraform.lock*
 # Local .terraform directories
 **/.terraform/*
 
