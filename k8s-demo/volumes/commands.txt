@@ -1,0 +1,29 @@
+kubectl apply -f pod-empty-dir.yaml
+kubectl create configmap game-config --from-file=configs/
+kubectl describe configmap game-config
+kubectl exec -it pod-env-var cat /app/game.properties
+kubectl exec -it pod-env-var env
+
+kubectl apply -f pv.yaml
+kubectl apply -f pvc.yaml
+kubectl apply -f pod-with-pvc.yaml
+in minikube machine: echo “hello from the other side” > /data/pv0001/index.html
+
+https://storage.googleapis.com/kubernetes-helm/helm-v2.14.0-windows-amd64.zip
+helm init
+helm repo update
+helm list
+helm install --name redis stable/redis
+
+helm delete --purge redis
+helm install --name grafana stable/grafana\n
+helm upgrade  --name grafana stable/grafana --set persistence.enabled=true
+helm upgrade  grafana stable/grafana --set persistence.enabled=true
+helm upgrade  grafana stable/grafana --set persistence.enabled=true --set replicas=3
+helm install --name grafana stable/grafana -f values-dev.yaml
+helm delete --purge grafana
+helm install --name grafana stable/grafana -f values-prod.yaml
+
+
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
