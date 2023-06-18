@@ -1,0 +1,11 @@
+---
+- name: install nginx and vim
+  apt: name=nginx,vim state=present
+
+- name: Copy settings.txt
+  copy: src=settings.txt dest=/var/tmp
+
+- name: Template a file to another place
+  template:
+      src: dynamic-hostname.j2
+      dest: /root/hostname.conf
