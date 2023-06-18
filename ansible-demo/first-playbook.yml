@@ -1,0 +1,13 @@
+---
+- hosts: servers
+
+  tasks:
+    - name: Print debug msg to log 1
+      debug:
+        msg: "Hi, I'm a log msg from playbook 1"
+      tags: tag1
+
+    - name: Print debug msg to log 2
+      debug:
+        msg: "Hi, I'm a log msg from playbook 2"
+      tags: tag2
