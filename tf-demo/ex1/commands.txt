@@ -1,5 +1,0 @@
-terraform init
-terraform plan
-terraform apply
-cat terraform.tfstate
-terraform destroy
