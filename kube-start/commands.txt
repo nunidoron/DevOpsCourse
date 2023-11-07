@@ -11,3 +11,4 @@ kubectl get all
 kubectl expose deployment hello-node --type=ClusterIP --port=8080
 kubectl scale deployment/hello-node --replicas=3
 kubectl get services
+kubectl apply -f pod-with-service.yaml
