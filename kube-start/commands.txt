@@ -13,3 +13,5 @@ kubectl expose deployment hello-node --type=NodePort --port=80
 kubectl scale deployment/hello-node --replicas=3
 kubectl get services
 kubectl apply -f pod-with-service.yaml
+
+kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot -- /bin/bash
