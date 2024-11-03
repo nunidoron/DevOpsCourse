@@ -19,15 +19,3 @@ spec:
       volumeMounts:
         - mountPath: "/usr/share/nginx/html"
           name: task-pv-storage
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: svc-to-pvc
-spec:
-  selector:
-    appname: pvpod
-  type: NodePort
-  ports:
-  - port: 80
-
