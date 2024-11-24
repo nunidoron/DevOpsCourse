@@ -1,6 +1,8 @@
 #!/bin/bash
-docker rm -f ansible_node1  ansible_node2
-#docker build -t aviel/ansible-demo .
+yum install -y docker
+systemctl start docker 
+systemctl enable docker
+ֿdocker rm -f ansible_node1  ansible_node2
 docker run -d -P --name ansible_node1 avielb/ansible-demo
 docker run -d -P --name ansible_node2 avielb/ansible-demo
 IP_ADDR=localhost
