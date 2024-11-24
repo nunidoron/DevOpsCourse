@@ -1,6 +1,8 @@
 #!/bin/bash
 yum install -y docker
-systemctl start docker 
+yum install ansible -y
+
+ystemctl start docker 
 systemctl enable docker
 ֿdocker rm -f ansible_node1  ansible_node2
 docker run -d -P --name ansible_node1 avielb/ansible-demo
