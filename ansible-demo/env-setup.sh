@@ -9,7 +9,6 @@ docker run -d -P --name ansible_node2 avielb/ansible-demo
 IP_ADDR=localhost
 NODE1=`docker port ansible_node1 22 | awk -F ':' '{print $2}'`
 NODE2=`docker port ansible_node2 22 | awk -F ':' '{print $2}'`
-apt-get update && apt-get install ansible vim -y
 > hosts
 echo '[servers]'  >> hosts
 echo "node1 ansible_host=$IP_ADDR ansible_port=$NODE1" >> hosts
