@@ -13,6 +13,9 @@ spec:
         - name: config-volume
           mountPath: /app/game.properties
           subPath: game.properties
+        - name: config-volume
+          mountPath: /app/ui.properties
+          subPath: ui.properties
   volumes:
     - name: config-volume
       configMap:
