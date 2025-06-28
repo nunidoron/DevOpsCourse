@@ -4,7 +4,6 @@ metadata:
   name: task-pv-pod
   labels:
     appname: pvpod
-
 spec:
   volumes:
     - name: task-pv-storage

@@ -1,0 +1,17 @@
+Directory:
+kubectl apply -f pod-empty-dir.yaml
+
+ConfigMap:
+kubectl create configmap game-config --from-file=configs/
+kubectl describe configmap game-config
+kubectl exec -it pod-env-var cat /app/game.properties
+kubectl exec -it pod-env-var env
+
+PV - manual:
+kubectl apply -f pv.yaml
+kubectl apply -f pvc.yaml
+kubectl apply -f pod-with-pvc.yaml
+in minikube machine: echo “hello from the other side” > /data/pv0001/index.html
+
+PV - auto:
+kubectl apply -f pvc-sc.yaml
