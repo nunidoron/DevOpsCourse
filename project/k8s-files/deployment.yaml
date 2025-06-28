@@ -14,23 +14,23 @@ spec:
     spec:
       containers:
       - name: quakewatch
-        image: nunidoron/quakewatch:latest
+        image: nunidoron/quakewatch:k8s
         ports:
         - containerPort: 5000
         resources:
           requests:
-            cpu: "20m"
+            cpu: "50m"
           limits:
-            cpu: "40m"
+            cpu: "100m"
         livenessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 5000
           initialDelaySeconds: 5
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /
+            path: /health
             port: 5000
           initialDelaySeconds: 5
           periodSeconds: 5
