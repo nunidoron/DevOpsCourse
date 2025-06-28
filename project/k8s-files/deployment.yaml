@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quakewatch-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: quakewatch
+  template:
+    metadata:
+      labels:
+        app: quakewatch
+    spec:
+      containers:
+      - name: quakewatch
+        image: nunidoron/quakewatch:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "20m"
+          limits:
+            cpu: "40m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
