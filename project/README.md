@@ -34,7 +34,6 @@ minikube service quakewatch-service
 
 ### Ensure Metrics Server is Running
 ```bash
-minikube addons enable metrics-server
 kubectl get deployment metrics-server -n kube-system
 kubectl top nodes
 ```
@@ -47,6 +46,10 @@ kubectl get hpa
 ## Notes
 If "CPU target unknown" appears, please wait. it can take up to 3 minutes.
 
+### Monitor HPA and Pod Scaling (better in a new terminal) - should increase during the test
+```bash
+watch kubectl get hpa
+```
 
 ### Generate Load Inside the Cluster
 ```bash
@@ -58,9 +61,5 @@ Inside the container:
 while true; do wget -q -O- http://quakewatch-service/load; done
 ```
 
-### Monitor HPA and Pod Scaling (better in a new terminal)
-```bash
-watch kubectl get hpa
-```
 ## Notes
 The pods/minikube can crash. it's ok.  we are overloading the system
