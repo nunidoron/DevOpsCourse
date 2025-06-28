@@ -1,40 +1,66 @@
-# QuakeWatch - Flask Docker Application
+# QuakeWatch Phase 2 - Kubernetes Deployment
 
-## Description
-Simple Flask app that returns "Hello, World!" when accessed.
+## !!!! We are now in Phase 2. for previous instructions go back to phase 1
+
 
 ## Requirements
-- Docker installed
-- Docker Compose installed
+- Minikube or k3s installed
+- kubectl installed
 
-## Build and Run
+## Steps
 
-### Step 1: Build the Docker Image
+### Start Minikube
 ```bash
-docker build -t <your-dockerhub-username>/quakewatch:latest .
+minikube start
+minikube addons enable metrics-server
 ```
 
-### Step 2: Run the Container
+### Apply Configurations
 ```bash
-docker run -d -p 5000:5000 <your-dockerhub-username>/quakewatch:latest
+cd k8s-files
+kubectl apply -f .
 ```
 
-### Step 3: Access the Application
-Open your browser and go to:
-http://localhost:5000
-
-## Using Docker Compose
+### Access the Application
 ```bash
-docker-compose up --build
-```
-
-## Push to Docker Hub
-```bash
-docker login
-docker tag <image-id> <your-dockerhub-username>/quakewatch:latest
-docker push <your-dockerhub-username>/quakewatch:latest
+minikube service quakewatch-service
 ```
 
 ## Notes
-- Ensure port 5000 is available.
-- Replace `<your-dockerhub-username>` with your actual Docker Hub username.
+- Replace `<your-dockerhub-username>` in `deployment.yaml` with your Docker Hub username.
+- Ensure metrics-server is installed for HPA.
+
+## HPA Testing Guide
+
+### Ensure Metrics Server is Running
+```bash
+minikube addons enable metrics-server
+kubectl get deployment metrics-server -n kube-system
+kubectl top nodes
+```
+
+
+### Verify HPA Status
+```bash
+kubectl get hpa
+```
+## Notes
+If "CPU target unknown" appears, please wait. it can take up to 3 minutes.
+
+
+### Generate Load Inside the Cluster
+```bash
+kubectl run -it load-tester --image=busybox --restart=Never -- /bin/sh
+```
+
+Inside the container:
+```sh
+while true; do wget -q -O- http://quakewatch-service/load; done
+```
+
+### Monitor HPA and Pod Scaling (better in a new terminal)
+```bash
+watch kubectl get hpa
+```
+## Notes
+The pods/minikube can crash. it's ok.  we are overloading the system
