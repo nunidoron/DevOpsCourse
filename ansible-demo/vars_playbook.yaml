@@ -1,6 +1,9 @@
 ---
 - hosts: servers
 
+  vars_files:
+      - ./vars_file.yml
+      
   tasks:
     - name: Print Vars from file.
       debug:
@@ -9,11 +12,6 @@
 
     - name: Print Var1 and Var2
       debug:
-        msg: "Var1 value is {{var1}} and Var2 value is {{var2}}"
-      tags: tag1
-
-    - name: Print listVar
-      debug:
-        msg: "Current Item is: {{item}}"
-      with_items: "{{listVar}}"
+        msg: "Var1 value is {{varFromFile1}} and Var3 value is {{varFromFile3}}"
       tags: tag2
+
