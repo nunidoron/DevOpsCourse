@@ -1,6 +1,9 @@
 ---
 - hosts: servers
-
+  
+  vars_files:
+      - ./vars_file.yml
+      
   tasks:
     - name: Print Debug message.
       debug:
