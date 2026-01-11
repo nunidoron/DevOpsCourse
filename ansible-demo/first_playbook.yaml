@@ -2,7 +2,7 @@
 - hosts: servers
 
   tasks:
-    - name: Print Vars from file.
+    - name: Print Debug message.
       debug:
         msg: "Hi from Ansible"
 
