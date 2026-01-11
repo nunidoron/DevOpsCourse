@@ -1,0 +1,10 @@
+---
+- hosts: servers
+
+  tasks:
+    - name: Print Vars from file.
+      debug:
+        msg: "Hi from Ansible"
+
+    - name: install nginx and vim
+      apt: name=nginx,vim state=present
