@@ -8,6 +8,7 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm install grafana --namespace monitoring grafana/grafana
 kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 kubectl -n monitoring port-forward svc/grafana 3000:80 &
+kubectl describe cm -n monitoring prometheus-grafana-datasource
 kubectl -n monitoring port-forward svc/prometheus-node-exporter 9100:9100 &
 kubectl -n monitoring port-forward svc/prometheus-pushgateway 9091:9091 &
 kubectl -n monitoring port-forward svc/prometheus-server 9090:80 &
