@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: debian
   labels:
-    name: debian
+    appname: doron
 spec:
   containers:
   - image: debian
